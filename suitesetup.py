@@ -5,6 +5,15 @@ suitesetup = Flask(__name__)
 @suitesetup.route('/')
 def homePage():
 	return render_template('index.html')
+@suitesetup.route('/explore')
+def explorePage():
+	return render_template('explore.html')
+@suitesetup.route('/northcampus')
+def northCampus():
+	return render_template('northcampus.html')
+@suitesetup.route('/southcampus')
+def southCampus():
+	return render_template('southcampus.html')
 if __name__== '__main__':
 	suitesetup.run(debug=True)
 
@@ -285,7 +294,6 @@ robin=Person('Senior',True,True,False)
 chuck=Person('Senior',False,True,True)
 tim=Person('Senior',True,False,True)
 will=Person('Senior',True,True,False)
-print(processGroup(robin,chuck,tim,will))
 
 
 

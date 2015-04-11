@@ -2,8 +2,7 @@ body {
     background-color: black;
     img.displayed {
     display: block;
-    margin-left: auto;
-    vertical-align: center
+    margin-left: 0cm;   
     margin-right: auto }
 
 }
