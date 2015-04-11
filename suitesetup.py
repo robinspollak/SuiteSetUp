@@ -1,25 +1,6 @@
 from flask import Flask
 from flask import render_template
 import random
-suitesetup = Flask(__name__)
-@suitesetup.route('/')
-def homePage():
-	return render_template('index.html')
-@suitesetup.route('/explore')
-def explorePage():
-	return render_template('explore.html')
-@suitesetup.route('/getmatched')
-def getMatched():
-	return render_template('getmatched.html')
-@suitesetup.route('/northcampus')
-def northCampus():
-	return render_template('northcampus.html')
-@suitesetup.route('/southcampus')
-def southCampus():
-	return render_template('southcampus.html')
-if __name__== '__main__':
-	suitesetup.run(debug=True)
-
 class Suite:
 	def __init__(self,name,room1,room2,room3,room4,room5,room6,numpeople,numsing,numdub,num2rm,balc,pat,cr,encbath,enclosed,subfree):
 		self.name=name
@@ -37,7 +18,7 @@ class Suite:
 		self.encbath=encbath
 		self.enclosed=(True if enclosed=='1' else False)
 		self.subfree=(True if subfree=='1' else False)
-	def __str__(self):
+	def __repr__(self):
 		toreturn = ''
 		if self.numsing==1:
 			if self.numdub==1:
@@ -297,7 +278,101 @@ robin=Person('Senior',True,True,False)
 chuck=Person('Senior',False,True,True)
 tim=Person('Senior',True,False,True)
 will=Person('Senior',True,True,False)
-
+suitesetup = Flask(__name__)
+@suitesetup.route('/')
+def homePage():
+	return render_template('index.html')
+@suitesetup.route('/explore')
+def explorePage():
+	return render_template('explore.html')
+@suitesetup.route('/getmatched')
+def getMatched():
+	return render_template('getmatched.html')
+@suitesetup.route('/northcampus')
+def northCampus():
+	return render_template('northcampus.html')
+@suitesetup.route('/southcampus')
+def southCampus():
+	return render_template('southcampus.html')
+@suitesetup.route('/Pomona')
+def Pomona():
+	topass = []
+	for suite in pomona:
+		topass.append(repr(suite))
+	length = len(pomona)
+	return render_template('dorm.html',topass=topass,length=length)
+@suitesetup.route('/Sontag')
+def Sontag():
+	topass = []
+	for suite in sontag:
+		topass.append(repr(suite))
+	length = len(sontag)
+	return render_template('dorm.html',topass=topass,length=length)
+@suitesetup.route('/Lawry')
+def Lawry():
+	topass = []
+	for suite in lawry:
+		topass.append(repr(suite))
+	length = len(lawry)
+	return render_template('dorm.html',topass=topass,length=length)
+@suitesetup.route('/Clark5')
+def Clark5():
+	topass = []
+	for suite in clarkv:
+		topass.append(repr(suite))
+	length = len(clarkv)
+	return render_template('dorm.html',topass=topass,length=length)
+@suitesetup.route('/NortonClark')
+def ClarkIII():
+	topass = []
+	for suite in nortonclark:
+		topass.append(repr(suite))
+	length = len(nortonclark)
+	return render_template('dorm.html',topass=topass,length=length)
+@suitesetup.route('/ClarkI')
+def ClarkI():
+	topass = []
+	for suite in clarki:
+		topass.append(repr(suite))
+	length = len(clarki)
+	return render_template('dorm.html',topass=topass,length=length)
+@suitesetup.route('/Walker')
+def Walker():
+	topass = []
+	for suite in walker:
+		topass.append(repr(suite))
+	length = len(walker)
+	return render_template('dorm.html',topass=topass,length=length)
+@suitesetup.route('/Blaisdell')
+def Blaisdell():
+	topass = []
+	for suite in blaisdell:
+		topass.append(repr(suite))
+	length = len(blaisdell)
+	return render_template('dorm.html',topass=topass,length=length)
+@suitesetup.route('/Mudd')
+def Mudd():
+	topass = []
+	for suite in mudd:
+		topass.append(repr(suite))
+	length = len(mudd)
+	return render_template('dorm.html',topass=topass,length=length)
+@suitesetup.route('/Harwood')
+def Harwood():
+	topass = []
+	for suite in harwood:
+		topass.append(repr(suite))
+	length = len(harwood)
+	return render_template('dorm.html',topass=topass,length=length)
+@suitesetup.route('/Smiley')
+def Smiley():
+	topass = []
+	for suite in smiley:
+		topass.append(repr(suite))
+	length = len(smiley)
+	return render_template('dorm.html',topass=topass,length=length)
+if __name__== '__main__':
+	suitesetup.run(debug=True)
 
 
 

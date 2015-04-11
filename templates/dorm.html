@@ -3,7 +3,7 @@
   <meta charset="UTF-8" />
   <title>Suite Setup</title>
   <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" type="text/css" href="static/stylecampuses.css">
+<link rel="stylesheet" type="text/css" href="static/style.css">
 
 <!-- Latest compiled and minified JavaScript -->
 </head>
@@ -12,15 +12,20 @@
 	<div class="center">
 		<img src="static/logo.png" alt="HTML5 Icon" style="width:543px;height:280px">
 		<menu>
-       <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;So you're looking in...</h3>
+        
+      
         
   	    <!-- <button href="/explore"type="button" class="btn btn-lg btn-default">Explore</button>
         <button href="/match" type="button" class="btn btn-lg btn-default">Get matched</button> -->
+          </div>
+          <ul style="list-style-type:square">
+              {% for suite in topass %}
+              <li> {{ suite }}</li>
+              <br>
+              {% endfor %}
+          </ul>
     </menu>
-	</div>
-  <div class="text">
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='/Blaisdell' >Blaisdell?</a> <a href='/Mudd' >Mudd?</a><a href='/Harwood' >Harwood?</a> <a href='/Smiley' >Smiley?</a> 
-  </div>
+
 
   
 

@@ -3,9 +3,15 @@ body {
     img.displayed {
     display: block;
     margin-left: auto;
-    vertical-align: center
+    vertical-align: center;
     margin-right: auto }
 
+}
+h4{
+    text-align: center;
+}
+h2{
+    text-align: center;
 }
 menu{
 	margin-left: 0cm;
