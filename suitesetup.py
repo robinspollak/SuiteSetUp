@@ -17,7 +17,15 @@ class Suite:
 		self.subfree=(True if subfree=='1' else False)
 	def __str__(self):
 		toreturn = ''
-		toreturn+=('%s is a %s person suite with %s singles and %s doubles. ') %(self.name,self.numpeople,self.numsing,self.numdub)
+		if self.numsing==1:
+			if self.numdub==1:
+				toreturn+=('%s is a %s person suite with %s single and %s double. ') %(self.name,self.numpeople,self.numsing,self.numdub)
+			else:
+				toreturn+=('%s is a %s person suite with %s single and %s doubles. ') %(self.name,self.numpeople,self.numsing,self.numdub)
+		elif self.numdub==1:
+			toreturn+=('%s is a %s person suite with %s singles and %s double. ') %(self.name,self.numpeople,self.numsing,self.numdub)
+		else:
+			toreturn+=('%s is a %s person suite with %s singles and %s doubles. ') %(self.name,self.numpeople,self.numsing,self.numdub)
 		if self.balc:
 			toreturn+='This suite has a balcony. '
 		if self.pat:
@@ -27,9 +35,16 @@ class Suite:
 		if self.subfree:
 			toreturn+='This suite is in a subfree housing area. '
 		if self.enclosed:
-			toreturn+='This is a fully enclosed suite that has %s bathrooms. '%(self.encbath)
+			if self.encbath==1:
+				toreturn+='This is a fully enclosed suite that has %s bathroom. '%(self.encbath)
+			else:
+				toreturn+='This is a fully enclosed suite that has %s bathrooms. '%(self.encbath)
 		else:
 			toreturn+='This suite is more of a hallway, the bathrooms are on your hall. '
+		if (self.getAverage()!='Sorry, no previous room draw data exists.'):
+			toreturn+="The average room draw number required to get this suite is %d"%(self.getAverage())
+		else:
+			toreturn+="Unfortunately, we cannot provide any history about average room draw numbers because none exists."
 		return toreturn
 	def __getitem__(self,key):
 		return self
@@ -191,8 +206,11 @@ for draw in listofdraws:
 				suite.adddrawnum(draw.num)
 for building in buildings:
 	for suite in building:
-		print(suite.name,suite.getAverage())
-		#print(suite.name,suite.drawnumbersused)
+		print(suite)
+
+class Person:
+	def __init__(self,grade,low,medium,high):
+		
 
 
 
