@@ -1,9 +1,10 @@
 body {
     background-color: black;
-    img.displayed {
     display: block;
-    margin-left: 0cm;   
-    margin-right: auto }
+    margin-left: auto;   
+    margin-right: auto; 
+    margin-left: auto;   
+    margin-right: auto
 
 }
 menu{
@@ -12,7 +13,9 @@ menu{
 	color: #FFFFFF
 }
 a{
-	font-size: 28pt;
+	font-size: 20pt;
+    vertical-align: center;
+    margin-left: 1cm;
 }
 /* unvisited link */
 a:link {
