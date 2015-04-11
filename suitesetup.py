@@ -8,6 +8,9 @@ def homePage():
 @suitesetup.route('/explore')
 def explorePage():
 	return render_template('explore.html')
+@suitesetup.route('/getmatched')
+def getMatched():
+	return render_template('getmatched.html')
 @suitesetup.route('/northcampus')
 def northCampus():
 	return render_template('northcampus.html')
