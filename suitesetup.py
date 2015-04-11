@@ -1,3 +1,9 @@
+from flask import Flask
+import random
+suitesetup = Flask(__name__)
+@app.route('/')
+def homePage(name=None):
+	return render_template(index.html,name=name)
 class Suite:
 	def __init__(self,name,room1,room2,room3,room4,room5,room6,numpeople,numsing,numdub,num2rm,balc,pat,cr,encbath,enclosed,subfree):
 		self.name=name
@@ -41,10 +47,7 @@ class Suite:
 				toreturn+='This is a fully enclosed suite that has %s bathrooms. '%(self.encbath)
 		else:
 			toreturn+='This suite is more of a hallway, the bathrooms are on your hall. '
-		if (self.getAverage()!='Sorry, no previous room draw data exists.'):
-			toreturn+="The average room draw number required to get this suite is %d"%(self.getAverage())
-		else:
-			toreturn+="Unfortunately, we cannot provide any history about average room draw numbers because none exists."
+		toreturn+="The average room draw number required to get this suite is %d"%(self.getAverage())
 		return toreturn
 	def __getitem__(self,key):
 		return self
@@ -54,8 +57,6 @@ class Suite:
 		temp=0
 		for number in self.drawnumbersused:
 			temp+=float(number)
-		if (self.drawnumbersused==[]):
-			return 'Sorry, no previous room draw data exists.'
 		return round((temp/(len(self.drawnumbersused))),2)
 
 class roomDraw:
@@ -68,8 +69,6 @@ class roomDraw:
 			self.building='Mudd'
 		elif building=='HAR':
 			self.building='Harwood'
-		elif building=='WIG':
-			self.building='Wig'
 		elif building=='SMI':
 			self.building='Smiley'
 		elif building=='CL-I':
@@ -99,7 +98,7 @@ twok13 = open('textfiles/2013.txt')
 twok14 = open('textfiles/2014.txt')
 #parse the suite data
 listoflines = []
-blaisdell,mudd,harwood,wig,smiley,clarki,nortonclark,clarkv,walker,lawry,pomona,sontag = [],[],[],[],[],[],[],[],[],[],[],[]
+blaisdell,mudd,harwood,smiley,clarki,nortonclark,clarkv,walker,lawry,pomona,sontag = [],[],[],[],[],[],[],[],[],[],[]
 for line in suitedata:
 	listoflines.append(line)
 splitlist = []
@@ -111,8 +110,6 @@ for mylist in splitlist:
 		blaisdell.append(mylist)
 	if mylist[1]=='Mudd':
 		mudd.append(mylist)
-	if mylist[1]=='Wig':
-		wig.append(mylist)
 	if mylist[1]=='Harwood':
 		harwood.append(mylist)
 	if mylist[1]=='Smiley':
@@ -147,7 +144,7 @@ for year in data:
 			listofdraws.append(roomDraw(mylist[0],mylist[1],mylist[2],mylist[3]))
 
 
-buildings = [blaisdell,mudd,harwood,wig,smiley,clarki,nortonclark,clarkv,walker,lawry,pomona,sontag]
+buildings = [blaisdell,mudd,harwood,smiley,clarki,nortonclark,clarkv,walker,lawry,pomona,sontag]
 mylist = []
 for building in buildings:
 	for i in range(len(building)):
@@ -162,10 +159,6 @@ for draw in listofdraws:
 				suite.adddrawnum(draw.num)
 	if draw.building=='Mudd':
 		for suite in mudd:
-			if draw.rmnum in suite.rooms:
-				suite.adddrawnum(draw.num)
-	if draw.building=='Wig':
-		for suite in wig:
 			if draw.rmnum in suite.rooms:
 				suite.adddrawnum(draw.num)
 	if draw.building=='Harwood':
@@ -204,13 +197,98 @@ for draw in listofdraws:
 		for suite in sontag:
 			if draw.rmnum in suite.rooms:
 				suite.adddrawnum(draw.num)
+allsuites=[]
 for building in buildings:
 	for suite in building:
-		print(suite)
+		allsuites.append([suite.name,suite.getAverage()])
+
+for i in range(len(allsuites)):
+	for j in range(len(allsuites)-1,i,-1):
+		if (allsuites[j][1]<allsuites[j-1][1]):
+			temp=allsuites[j]
+			allsuites[j]=allsuites[j-1]
+			allsuites[j-1]=temp
+
+
 
 class Person:
 	def __init__(self,grade,low,medium,high):
-		
+		self.grade=grade
+		self.low=low
+		self.medium=medium
+		self.high=high
+	def __str__(self):
+		if self.low:
+			if self.medium:
+				return 'this %s has had their low and medium draw numbers already.'%self.grade
+			if self.high:
+				return 'this %s has had their low and high draw numbers already.'%self.grade
+			else:
+				return 'this %s has had their low draw number already.'%self.grade
+		if self.medium:
+			if self.high:
+				return 'this %s has had their medium and high draw numbers already.'%self.grade
+			else:
+				return 'this %s has had their medium draw number already.'%self.grade
+		if self.high:
+			return 'this %s has had their high draw number already.'%self.grade
+		return 'this %s has not had any of their draw numbers yet.'%self.grade
+
+def getRandomDrawNumber(person):
+	random.seed()
+	if person.grade=='Senior':
+		if person.low:
+			if person.medium:
+				return random.randint(1,133)
+			elif person.high:
+				return random.randint(133,266)
+		if person.medium:
+			if person.high:
+				return random.randint(266,400)
+	elif person.grade=='Junior':
+		if person.low:
+			return random.randint(401,666)
+		if person.medium:
+			temp=random.randint(0,1)
+			if temp==1:
+				return random.randint(401,534)
+			else:
+				return random.randint(666,800)
+		if person.high:
+			return random.randint(534,800)
+	else:
+		temp=random.randint(0,2)
+		if temp==0:
+			return random.randint(1066,1200)
+		if temp==1:
+			return random.randint(933,1066)
+		else:
+			return random.randint(800,933)
+
+def getGroupNumber(person1,person2,person3,person4):
+	temp=0
+	for i in range(1000):
+		temp+=(getRandomDrawNumber(person1)+getRandomDrawNumber(person2)+getRandomDrawNumber(person3)+getRandomDrawNumber(person4))/4
+	return temp/1000
+
+def processGroup(person1,person2,person3,person4):
+	number = getGroupNumber(person1,person2,person3,person4)
+	for i in range(len(allsuites)):
+		if allsuites[i][1]<number:
+			continue
+		return [allsuites[i-3][0],allsuites[i][0],allsuites[i+1][0],allsuites[i+4][0]]
+robin=Person('Senior',True,True,False)
+chuck=Person('Senior',False,True,True)
+tim=Person('Senior',True,False,True)
+will=Person('Senior',True,True,False)
+print(processGroup(robin,chuck,tim,will))
+
+
+
+
+
+
+
 
 
 

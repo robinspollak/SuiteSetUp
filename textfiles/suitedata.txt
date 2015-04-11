@@ -24,8 +24,6 @@ Harwood Towers Northwest,Harwood,319,321,323,325,0,0,5,3,1,0,0,0,0,1,1,0
 Harwood Towers Northeast,Harwood,342,344,345,347,0,0,5,3,1,0,0,0,0,1,1,0
 Harwood Towers Southeast,Harwood,378,379,0,0,0,0,4,0,2,0,0,0,0,1,1,0
 Harwood Towers Southwest,Harwood,301,302,0,0,0,0,4,0,2,0,0,0,0,1,1,0
-Wig Outside Back,Harwood,102,100A,100B,0,0,0,5,3,1,0,0,0,0,0,0,0
-Wig Inside Back,Harwood,101,103,0,0,0,0,2,0,0,0,0,0,0,0,0,0
 Clark I North,Clark I,113,113A,114,114A,0,0,4,4,0,0,0,0,0,2,1,0
 Clark I Northeast,Clark I,118,118A,119,119A,0,0,4,4,0,0,0,0,0,2,1,0
 Clark I Middle East,Clark I,124,124A,125,125A,0,0,4,4,0,0,0,0,0,2,1,0
