@@ -134,7 +134,9 @@
 </body>
 <script>
 function postToServer(){
-$.post('/receiver',{'grade1':$('#grade1').val(),'grade2':$('#grade2').val(),'grade3':$('#grade3').val(),'grade4':$('#grade4').val(),'pd11':$('#firstdraw1').val(),'pd12':$('#seconddraw1').val(),'pd21':$('#firstdraw2').val(),'pd22':$('#seconddraw2').val(),'pd31':$('#firstdraw3').val(),'pd32':$('#seconddraw3').val(),'pd41':$('#firstdraw4').val(),'pd42':$('#seconddraw4').val()});
+$.post('/receiver',{'grade1':$('#grade1').val(),'grade2':$('#grade2').val(),'grade3':$('#grade3').val(),'grade4':$('#grade4').val(),'pd11':$('#firstdraw1').val(),'pd12':$('#seconddraw1').val(),'pd21':$('#firstdraw2').val(),'pd22':$('#seconddraw2').val(),'pd31':$('#firstdraw3').val(),'pd32':$('#seconddraw3').val(),'pd41':$('#firstdraw4').val(),'pd42':$('#seconddraw4').val()}, function(data) {
+  $('body').html(data);
+});
 }
 </script>
 </html> 
