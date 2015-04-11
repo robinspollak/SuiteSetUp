@@ -1,0 +1,14 @@
+body {
+    background-color: lightblue;
+    img.displayed {
+    display: block;
+    margin-left: auto;
+    margin-right: auto }
+
+}
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    width: 42%;
+
+}
