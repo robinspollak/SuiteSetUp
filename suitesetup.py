@@ -4,7 +4,7 @@ import random
 suitesetup = Flask(__name__)
 @suitesetup.route('/')
 def homePage():
-	render_template('templates/index.html')
+	return render_template('index.html')
 if __name__== '__main__':
 	suitesetup.run(debug=True)
 
