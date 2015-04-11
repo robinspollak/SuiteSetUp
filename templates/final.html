@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Suite Setup</title>
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" type="text/css" href="static/styleexplore.css">
+
+<!-- Latest compiled and minified JavaScript -->
+</head>
+
+<body>
+  <div class="center">
+    <img src="static/logo.png" alt="HTML5 Icon" style="width:543px;height:280px">
+    <menu>
+        <ul style="list-style-type:square">
+              {% for suite in myvar %}
+              <li> {{ suite }}</li>
+              <br>
+              {% endfor %}
+          </ul>
+        
+        <!-- <button href="/explore"type="button" class="btn btn-lg btn-default">Explore</button>
+        <button href="/match" type="button" class="btn btn-lg btn-default">Get matched</button> -->
+    </menu>
+  </div>
+  
+
+  
+</body>
+</html> 

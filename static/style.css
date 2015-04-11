@@ -17,6 +17,9 @@ menu{
 	font-size: 20pt;
 	color: #FFFFFF
 }
+b{
+    color:#000000;
+}
 a{
 	text-align: center;
 	font-size: 28pt;
@@ -46,4 +49,17 @@ a:active {
     width: 42%;
 
 }
+
+h4 {
+    color: #FFFFFF;
+}
+select{
+    
+}
+
+.btn {
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
 

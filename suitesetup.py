@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 from flask import render_template
 import random
 class Suite:
@@ -233,15 +233,17 @@ class Person:
 
 def getRandomDrawNumber(person):
 	random.seed()
-	if person.grade=='Senior':
+	if person.grade=='S':
 		if person.low:
 			if person.medium:
 				return random.randint(1,133)
-			elif person.high:
+			if person.high:
 				return random.randint(133,266)
 		if person.medium:
 			if person.high:
 				return random.randint(266,400)
+		if person.high:
+			return random.randint(133,400)
 	elif person.grade=='Junior':
 		if person.low:
 			return random.randint(401,666)
@@ -264,9 +266,12 @@ def getRandomDrawNumber(person):
 
 def getGroupNumber(person1,person2,person3,person4):
 	temp=0
-	for i in range(1000):
+	for i in range(15):
+		print (getRandomDrawNumber(person1),getRandomDrawNumber(person2),getRandomDrawNumber(person3),getRandomDrawNumber(person4))
+		print(temp)
+		break
 		temp+=(getRandomDrawNumber(person1)+getRandomDrawNumber(person2)+getRandomDrawNumber(person3)+getRandomDrawNumber(person4))/4
-	return temp/1000
+	return temp/15
 
 def processGroup(person1,person2,person3,person4):
 	number = getGroupNumber(person1,person2,person3,person4)
@@ -274,10 +279,7 @@ def processGroup(person1,person2,person3,person4):
 		if allsuites[i][1]<number:
 			continue
 		return [allsuites[i-3][0],allsuites[i][0],allsuites[i+1][0],allsuites[i+4][0]]
-robin=Person('Senior',True,True,False)
-chuck=Person('Senior',False,True,True)
-tim=Person('Senior',True,False,True)
-will=Person('Senior',True,True,False)
+
 suitesetup = Flask(__name__)
 @suitesetup.route('/')
 def homePage():
@@ -285,7 +287,7 @@ def homePage():
 @suitesetup.route('/explore')
 def explorePage():
 	return render_template('explore.html')
-@suitesetup.route('/getmatched')
+@suitesetup.route('/match')
 def getMatched():
 	return render_template('getmatched.html')
 @suitesetup.route('/northcampus')
@@ -371,8 +373,31 @@ def Smiley():
 		topass.append(repr(suite))
 	length = len(smiley)
 	return render_template('dorm.html',topass=topass,length=length)
+@suitesetup.route('/receiver',methods=['POST','GET'])
+def receiver():
+	grade1 = request.form.get('grade1')
+	grade2 = request.form.get('grade2')
+	grade3 = request.form.get('grade3')
+	grade4 = request.form.get('grade4')
+	pd11=request.form.get('pd11')
+	pd12=request.form.get('pd12')
+	pd21=request.form.get('pd21')
+	pd22=request.form.get('pd22')
+	pd31=request.form.get('pd31')
+	pd32=request.form.get('pd32')
+	pd41=request.form.get('pd41')
+	pd42=request.form.get('pd42')
+	person1=Person(str(grade1[0]),(True if (pd11=='Low' or pd12=='Low') else False),(True if (pd11=='Mid' or pd12=='Mid') else False),(True if (pd11=='High' or pd12=='High') else False))
+	person2=Person(str(grade2[0]),(True if (pd21=='Low' or pd22=='Low') else False),(True if (pd21=='Mid' or pd22=='Mid') else False),(True if (pd21=='High' or pd22=='High') else False))
+	person3=Person(str(grade3[0]),(True if (pd31=='Low' or pd32=='Low') else False),(True if (pd31=='Mid' or pd32=='Mid') else False),(True if (pd31=='High' or pd32=='High') else False))
+	person4=Person(str(grade4[0]),(True if (pd41=='Low' or pd42=='Low') else False),(True if (pd41=='Mid' or pd42=='Mid') else False),(True if (pd41=='High' or pd42=='High') else False))
+	print(person2.low,person2.medium,person2.high,person2.grade)
+	myvar=(processGroup(person1,person2,person3,person4))
+	print(myvar)
+	return render_template('final.html',myvar=myvar,length=(len(myvar)))
 if __name__== '__main__':
 	suitesetup.run(debug=True)
+
 
 
 
