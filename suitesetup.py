@@ -1,1 +1,5 @@
-hi = 14
+suitedata = open('textfiles/suitedata.txt')
+twok11 = open('textfiles/2011.txt')
+twok12 = open('textfiles/2012.txt')
+twok13 = open('textfiles/2013.txt')
+twok14 = open('textfiles/2014.txt')
