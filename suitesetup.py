@@ -244,7 +244,7 @@ def getRandomDrawNumber(person):
 				return random.randint(266,400)
 		if person.high:
 			return random.randint(133,400)
-	elif person.grade=='Junior':
+	elif person.grade=='J':
 		if person.low:
 			return random.randint(401,666)
 		if person.medium:
@@ -278,7 +278,7 @@ def processGroup(person1,person2,person3,person4):
 	for i in range(len(allsuites)):
 		if allsuites[i][1]<number:
 			continue
-		return [allsuites[i-3][0],allsuites[i][0],allsuites[i+1][0],allsuites[i+4][0]]
+		return [allsuites[i+3][0],allsuites[i][0],allsuites[i+1][0],allsuites[i+2][0]]
 
 suitesetup = Flask(__name__)
 @suitesetup.route('/')
@@ -387,13 +387,14 @@ def receiver():
 	pd32=request.form.get('pd32')
 	pd41=request.form.get('pd41')
 	pd42=request.form.get('pd42')
-	person1=Person(str(grade1[0]),(True if (pd11=='Low' or pd12=='Low') else False),(True if (pd11=='Mid' or pd12=='Mid') else False),(True if (pd11=='High' or pd12=='High') else False))
-	person2=Person(str(grade2[0]),(True if (pd21=='Low' or pd22=='Low') else False),(True if (pd21=='Mid' or pd22=='Mid') else False),(True if (pd21=='High' or pd22=='High') else False))
-	person3=Person(str(grade3[0]),(True if (pd31=='Low' or pd32=='Low') else False),(True if (pd31=='Mid' or pd32=='Mid') else False),(True if (pd31=='High' or pd32=='High') else False))
-	person4=Person(str(grade4[0]),(True if (pd41=='Low' or pd42=='Low') else False),(True if (pd41=='Mid' or pd42=='Mid') else False),(True if (pd41=='High' or pd42=='High') else False))
+	print(pd11,pd12)
+	person1=Person(str(grade1[0]),(True if (str(pd11[0])=='L' or str(pd12[0])=='L') else False),(True if (str(pd11[0])=='M' or str(pd12[0])=='M') else False),(True if (str(pd11[0])=='H' or str(pd12[0])=='H') else False))
+	person2=Person(str(grade2[0]),(True if (str(pd21[0])=='L' or str(pd22[0])=='L') else False),(True if (str(pd21[0])=='M' or str(pd22[0])=='M') else False),(True if (str(pd21[0])=='H' or str(pd22[0])=='H') else False))
+	person3=Person(str(grade3[0]),(True if (str(pd31[0])=='L' or str(pd32[0])=='L') else False),(True if (str(pd31[0])=='M' or str(pd32[0])=='M') else False),(True if (str(pd31[0])=='H' or str(pd32[0])=='H') else False))
+	person4=Person(str(grade4[0]),(True if (str(pd41[0])=='L' or str(pd42[0])=='L') else False),(True if (str(pd41[0])=='M' or str(pd42[0])=='M') else False),(True if (str(pd41[0])=='H' or str(pd42[0])=='H') else False))
 	print(person2.low,person2.medium,person2.high,person2.grade)
 	myvar=(processGroup(person1,person2,person3,person4))
-	print(myvar)
+	print person1,person2,person3,person4
 	return render_template('final.html',myvar=myvar,length=(len(myvar)))
 if __name__== '__main__':
 	suitesetup.run(debug=True)

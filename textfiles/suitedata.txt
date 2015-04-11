@@ -9,7 +9,6 @@ Muddment East,Mudd,63,65,0,0,0,0,4,0,2,0,0,0,0,0,0,0
 Muddment West,Mudd,63,66,0,0,0,0,4,0,2,0,0,0,0,0,0,0
 Blaisdell Corner East,Blaisdell,118A,118,119,0,0,0,4,2,1,0,0,0,0,0,0,0
 Blaisdell Corner West,Blaisdell,116,116A,113,115,0,0,4,4,0,0,0,0,0,0,0,0
-Blaisdell Tower,Blaisdell,341,342,343,0,0,0,3,3,0,0,0,0,0,1,1,1
 Mudd Tower,Mudd,310,311,312,313,314,0,5,5,0,0,0,0,0,1,1,1
 Harwood Patios w/ Common Room,Harwood,1,2,3,5,7,6,0,4,1,0,0,1,1,1,1,0
 Harwood Patios West,Harwood,11,13,15,17,0,0,5,3,1,0,0,1,0,0,0,0
