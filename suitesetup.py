@@ -1,9 +1,12 @@
-from flask import Flask
+from flask import Flask,render_template
 import random
 suitesetup = Flask(__name__)
-@app.route('/')
-def homePage(name=None):
-	return render_template(index.html,name=name)
+@suitesetup.route('/')
+def homePage():
+	render_template('templates/index.html')
+if __name__== '__main__':
+	suitesetup.run(debug=True)
+
 class Suite:
 	def __init__(self,name,room1,room2,room3,room4,room5,room6,numpeople,numsing,numdub,num2rm,balc,pat,cr,encbath,enclosed,subfree):
 		self.name=name
