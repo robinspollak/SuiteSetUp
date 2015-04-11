@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-from flask import Flask,render_template
-=======
 from flask import Flask
 from flask import render_template
->>>>>>> fddf250d9608664a8931fb4bd754c90d494879d0
 import random
 suitesetup = Flask(__name__)
 @suitesetup.route('/')
